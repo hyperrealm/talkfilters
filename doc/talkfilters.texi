@@ -1,0 +1,526 @@
+\input texinfo.tex    @c -*-texinfo-*-
+@c 
+@c %**start of header
+
+@c All text is ignored before the setfilename.
+@setfilename talkfilters.info
+@settitle talkfilters
+
+@set edition 2.3.9
+@set update-date 31 Oct 2017
+
+@comment %**end of header
+
+@tex
+\global\emergencystretch = .3\hsize
+@end tex
+
+@setchapternewpage odd
+
+@titlepage
+
+@title GNU Talk Filters
+@subtitle Amusing Text Translators
+@subtitle Version @value{edition}
+@subtitle @value{update-date}
+
+@author Mark A. Lindner, et. al.
+
+@page
+@vskip 0pt plus 1filll
+Copyright @copyright{} 1998-2018 Free Software Foundation, Inc.
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+@end titlepage
+
+@contents
+
+@ifnottex
+@node Top
+@comment  node-name,  next,  previous,  up
+@top talkfilters
+@end ifnottex
+
+@menu
+* Introduction::
+* The Filters::
+* The Talkfilters Library::
+* Writing New Filters::
+* Credits::
+* Software License::
+* Type and Function Index::
+@end menu
+
+@node Introduction, The Filters, Top, Top
+@comment  node-name,  next,  previous,  up
+@chapter Introduction
+
+The GNU Talk Filters are filter programs that convert English text into
+text that mimics a stereotyped or otherwise humorous type of
+speech. This package is not an original work but rather a collection and
+integration of existing filter programs that were written by various
+people and that have been in the public domain for many years. For a
+list of authors, see @ref{Credits}.
+
+The filters are provided in both executable and library form. See @ref{The
+Filters} for synopses of the programs, and @ref{The Talkfilters Library}
+for a description of the library API.
+
+Since the filters do word and substring substitution on the text they
+process, any word-wrap formatting of the original text will not be
+preserved in the output. The included @code{wrap} filter program may be
+used to reformat the output of the other filters to fit within a
+specified number of columns.
+
+Some of these filters contain vulgarity, and thus are not appropriate
+for all audiences. If you find something offensive in one or more of
+these filters, please do not flame the maintainer of this package or the
+original authors, or request that the filter(s) in question be censored
+or removed; requests of this type will be summarily ignored.
+
+These filters are not guaranteed to be idempotent across all inputs;
+that is, repeated applications of a given filter on an input may cause
+the output to differ each time. Moreover, some of the filters use
+randomization techniques so a given input is not guaranteed to produce
+the same output across invocations.
+
+The `flex' lexer (or any other lexer program, for that matter) is not
+required to build and use this package. However, `flex' @i{is} required
+to rebuild the filters if the @file{.l} source files are changed.
+
+@b{These filters are provided for amusement only. No racial or societal
+slurs are intended nor should be inferred.}
+
+@node The Filters, The Talkfilters Library, Introduction, Top
+@comment  node-name,  next,  previous,  up
+@chapter The Filters
+
+The filters provided in this package are enumerated below. This chapter
+describes the synopses for the individual filter programs; for a
+description of the library API, see @ref{The Talkfilters Library}.
+
+@sp 1
+
+@multitable @columnfractions .20 .80
+@item @code{austro} @tab Austrian (Ahhhhnold)
+@item @code{b1ff} @tab B1FF of U@sc{senet} yore
+@item @code{brooklyn} @tab Brooklyn accent
+@item @code{chef} @tab Swedish Chef (from @i{The Muppet Show})
+@item @code{cockney} @tab Londoner accent
+@item @code{drawl} @tab Southern drawl
+@item @code{dubya} @tab George "Dubya" Bush
+@item @code{fudd} @tab Elmer Fudd (from the Looney Tunes cartoons)
+@item @code{funetak} @tab Thick Asian accent
+@item @code{jethro} @tab Jethro from @i{The Beverly Hillbillies}
+@item @code{jive} @tab 1970's Jive
+@item @code{kraut} @tab German accent
+@item @code{pansy} @tab Effeminate male
+@item @code{pirate} @tab Pirate talk
+@item @code{postmodern} @tab Postmodernist talk (``Feminazi'')
+@item @code{redneck} @tab Country redneck
+@item @code{valspeak} @tab Valley talk
+@item @code{warez} @tab H4x0r code
+@item @code{wrap} @tab Word-wrap filter
+@end multitable
+
+@sp 1
+
+The filter programs read from standard input and write to
+standard output. They all recognize the following switches:
+
+@table @code
+@item --version
+Print version information and exit.
+@item --help
+Print usage information and exit.
+@end table
+
+@sp 1
+
+The @code{wrap} filter program additionally recognizes the following
+switch:
+
+@table @code
+@item -w @i{width}
+Specify the maximum number of columns @i{width} that the text may
+span. The minimum value of @i{width} is 10.
+@end table
+
+@sp 1
+
+An example usage might be:
+
+@example
+
+man ls | jive | wrap -w 78 | less
+
+@end example
+
+@node The Talkfilters Library, Writing New Filters, The Filters, Top
+@comment  node-name,  next,  previous,  up
+@chapter The Talkfilters Library
+
+All of the filters in the GNU Talk Filters are available collectively as
+a C library which can be linked with other programs to provide embedded
+text filtering support. While the individual filter programs filter from
+standard input to standard output, the filtering functions in the
+library operate on in-memory buffers instead.
+
+This chapter describes the API to the Talkfilters library. All of the
+functions and types described below are declared in the header file
+@file{talkfilters.h}.
+
+@deftypefun int gtf_filter_count (void)
+
+This function returns the number of filters in the library.
+
+@end deftypefun
+
+@deftypefun {gtf_filter_t *} gtf_filter_list (void)
+
+This function returns a pointer to an array of @i{gtf_filter_t}
+structures which contain information about each of the filters in the
+library, including the filter's symbolic name, a brief description of
+the filter that is suitable for display purposes, and a pointer to the
+filter function.
+
+@end deftypefun
+
+The following C program illustrates the use of
+@code{gtf_filter_count()} and @code{gtf_filter_list()} to display
+information about each filter in the library and invoke the filter
+on some test input:
+
+@sp 1
+
+@cartouche
+@example
+#include <stdio.h>
+#include <talkfilters.h>
+
+int main(void)
+  @{
+  int ct, i;
+  const gtf_filter_t *filters, *fp;
+  const char *inbuf = "This is a test.";
+  char outbuf[1024];
+
+  ct = gtf_filter_count();
+  printf("There are %d filters available.\n", ct);
+  filters = gtf_filter_list();
+  for(i = 0, fp = filters; i < ct; i++, fp++)
+    @{
+    printf("filter #%d: %s - %s\n", i + 1, fp->name, fp->desc);
+    fp->filter(inbuf, outbuf, sizeof(outbuf));
+    puts(outbuf);
+    @}
+  
+  exit(0);
+  @}
+@end example
+@end cartouche
+
+@page
+@tindex gtf_filter_t
+The type @i{gtf_filter_t} is a structure which contains the following
+members:
+
+@table @code
+@item char *name
+The symbolic name of the filter.
+@item char *desc
+A brief description of the filter.
+@item int (*filter)(const char *, char *, size_t)
+The filter function.
+@end table
+
+@deftypefun {gtf_filter_t *} gtf_filter_lookup (@w{const char *@var{name}})
+
+This is a lookup function for locating a specific filter. The function
+searches for the filter with the symbolic name @var{name}, and returns a
+pointer to the @i{gtf_filter_t} structure for that filter. If a filter
+with the given name is not found, the function returns @code{NULL}.
+
+@end deftypefun
+
+@deftypefun int gtf_filter_austro (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+@deftypefunx int gtf_filter_b1ff (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+@deftypefunx int gtf_filter_brooklyn (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+@deftypefunx int gtf_filter_chef (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+@deftypefunx int gtf_filter_cockney (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+@deftypefunx int gtf_filter_drawl (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+@deftypefunx int gtf_filter_dubya (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+@deftypefunx int gtf_filter_fudd (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+@deftypefunx int gtf_filter_funetak (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+@deftypefunx int gtf_filter_jethro (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+@deftypefunx int gtf_filter_jive (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+@deftypefunx int gtf_filter_kraut (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+@deftypefunx int gtf_filter_pansy (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+@deftypefunx int gtf_filter_pirate (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+@deftypefunx int gtf_filter_postmodern (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+@deftypefunx int gtf_filter_redneck (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+@deftypefunx int gtf_filter_valspeak (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+@deftypefunx int gtf_filter_warez (@w{const char *@var{input}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+
+These functions invoke the corresponding filters on the input buffer
+@var{input}, which must be a NUL-terminated string. At most @var{bufsz}
+- 1 bytes of output are written to the buffer @var{buf}. The output is
+unconditionally NUL-terminated, but the text itself may be truncated if
+the buffer is too small to accommodate all of the output.
+
+The functions return 0 on success, or 1 if a buffer overflow occurred
+(signifying that the output was truncated).
+
+Note that lexical scanners generated by `flex' are not reentrant, so no
+assumptions should be made about the reentrancy of the above
+functions. When this library is used in a multithreaded environment,
+calls to these functions should be protected by mutex locks.
+
+@end deftypefun
+
+@node Writing New Filters, Credits, The Talkfilters Library, Top
+@comment  node-name,  next,  previous,  up
+@chapter Writing New Filters
+
+Writing new filters and adding them to the library is fairly
+straightforward, but certain conventions must be observed to ensure that
+the filters will work properly both as standalone programs and as
+library functions. The internal header file @file{common.h} declares
+some utility functions and macros that should be used to ensure proper
+behavior.
+
+@defmac gtf_parse_args ()
+
+A filter's @code{main()} function should make a call to this macro to
+process the command line arguments. Currently, only the standard
+@samp{--help} and @samp{--version} switches are recognized. A call to
+this macro should typically be the first statement in @code{main()}.
+
+@end defmac
+
+@defmac gtf_random_seed ()
+
+Filters which make calls to the @code{gtf_random()} macro (described
+below), should make a call to this macro (preferably in @code{main()})
+to seed the random number generator. This macro seeds the random number
+sequence with a bitwise @sc{or} of the current system time and the
+@sc{pid} of the calling process.
+
+@end defmac
+
+@defmac gtf_random (range)
+
+This macro returns a random integer in the range [0, @var{range}). 
+
+@end defmac
+
+@defmac gtf_printf (format, ...)
+@defmacx gtf_putc (char)
+@defmacx gtf_puts (string)
+
+Filters must be able to function both as standalone programs and as
+library functions, so the stdio library functions cannot be used to
+write output. Instead, these macros should be used in place of the stdio
+library functions @code{printf()}, @code{putchar()}, and @code{puts()},
+respectively. When a filter is compiled to run as an executable, these
+macros simply evaluate to calls to the stdio functions they replace;
+when it is compiled into the library, they evaluate to calls to internal
+library functions which write to a data buffer.
+
+@end defmac
+
+@defmac gtf_puts_case (string)
+
+This macro is a specialized form of @code{gtf_puts()} which ensures that
+the case of the first character in @var{string} matches that of the
+first character in the currently matched token. For example, if
+@code{yytext} is ``Hello'', calling @code{gtf_puts_case()} with either
+``howdy'' or ``Howdy'' as an argument will write the string ``Howdy'',
+whereas if @code{yytext} is ``hello'', the string written will be
+``howdy''.
+
+@end defmac
+
+@defmac gtf_unput_last ()
+
+This macro ``unputs'' the last character of the current token. In other
+words, the last character of @code{yytext} will be returned back to the
+input stream, so that it will be the next character read by the lexical
+scanner.
+
+@end defmac
+
+@deftypefun void gtf_strbuf_init (@w{gtf_databuf_t *@var{sbuf}}, @w{char *@var{buf}}, @w{size_t @var{bufsz}})
+
+@tindex gtf_databuf_t
+This function initializes the @i{gtf_databuf_t} structure at @var{sbuf}
+to point to the buffer @var{buf}, which is @var{bufsz} bytes in length;
+these values specify the buffer to which the @code{gtf_printf()},
+@code{gtf_putc()}, @code{gtf_puts()}, and @code{gtf_puts_case()} macros
+will ultimately write their output when the filter is called through the
+library API. The @i{gtf_databuf_t} structure contains an integer field
+named @code{overflow} which will contain the value 1 after the call to
+@code{yylex()} if a buffer overflow occurred during filtering; otherwise
+it will contain the value 0.
+
+@end deftypefun
+
+@defmac gtf_reset ()
+
+This macro should be called after the call to @code{yylex()} within the
+filter API function in order to reset the state of the lexical scanner
+in preparation for the next call.
+
+@end defmac
+
+The following example shows the C code that implements both the library
+interface and the @code{main()} function for the @code{chef} filter.
+
+@sp 1
+
+@cartouche
+@example
+#ifdef LIBRARY_MODE
+
+int gtf_filter_chef(const char *input, char *buf, size_t bufsz)
+  @{
+  gtf_databuf_t buffer;
+  YY_BUFFER_STATE _yybuf;
+
+  gtf_strbuf_init(&buffer, buf, bufsz);
+  _yybuf = yy_scan_string(input);
+  yylex(&buffer);
+  yy_delete_buffer(_yybuf);
+  gtf_reset();
+
+  return(buffer.overflow);
+  @}
+
+#else /* LIBRARY_MODE */
+
+int main(int argc, char **argv)
+  @{
+  gtf_parse_args();
+
+  yylex(NULL);
+
+  exit(EXIT_SUCCESS);
+  @}
+
+#endif /* LIBRARY_MODE */
+@end example
+@end cartouche
+
+@page
+Each filter lex file must have an introductory fragment similar to
+the following:
+
+@sp 1
+
+@cartouche
+@example
+%option prefix="chef_yy"
+%option outfile="lex.yy.c"
+%option noyywrap
+
+%@{
+
+#include "common.h"
+
+#define YY_DECL int yylex(gtf_databuf_t *buf)
+
+%@}
+@end example
+@end cartouche
+
+The @code{prefix} option specifies a prefix for the names of the
+functions generated for this filter; the function names for each filter
+must be unique so that multiple filters can coexist within the
+library.
+
+The @code{outfile} option reverses an undesirable side effect of the
+@code{prefix} option, which is to name the generated C source file based
+on the prefix; this breaks @code{ylwrap} (an Automake helper program),
+which expects the output file to be named @code{lex.yy.c}.
+
+The @code{noyywrap} option specifies that no @code{yywrap()} function is
+needed.
+
+The macro @code{YY_DECL} is defined to specify that the @code{yylex()}
+function takes a single argument, a pointer to the @i{gtf_databuf_t}
+structure described above. When @code{yylex()} is called from
+@code{main()}, no output buffer is needed since text is written to
+standard output, so in that case, it is called with a @code{NULL}
+pointer as the argument. This function can be declared to accept
+additional arguments, but the @var{buf} argument @i{must} be present.
+
+The file @file{talkfilters.c} contains a filter registry in the form of
+an array of structures. Entries should be added therein for new
+filters. Appropriate @code{extern} declarations of the API functions for
+new filters should also be added to @file{talkfilters.h}.
+
+@node Credits, Software License, Writing New Filters, Top
+@comment  node-name,  next,  previous,  up
+@chapter Credits
+
+While all of these filters have been available in one form or another in
+the public domain for many years, the original authors of some of the
+filters are unknown. Reasonable attempts were made to find the authors
+and obtain written permission to repackage the filters as GNU software,
+but in some cases they could not be located.
+
+The following table lists the known authors and contributors.
+
+@sp 1
+
+@multitable @columnfractions .20 .80
+@item @code{austro} @tab Tom van Nes
+@item @code{b1ff} @tab Matt Welsh, David Whitten
+@item @code{brooklyn} @tab Daniel V Klein (@file{nyc.l})
+@item @code{chef} @tab John Hagerman
+@item @code{cockney} @tab Stephen K Mulrine, Edward Betts (@file{ken.l}); @i{unknown} (@file{cockney.l}); extensive enhancements by Samuel Stoddard
+@item @code{drawl} @tab Adam Hudd
+@item @code{dubya} @tab @i{anonymous contribution}
+@item @code{fudd} @tab @i{unknown}
+@item @code{funetak} @tab Eclipse Enterprises
+@item @code{jethro} @tab Duane Paulson
+@item @code{jive} @tab Daniel V Klein, Clement Cole, with enhancements by Samuel Stoddard
+@item @code{kraut} @tab @i{unknown}
+@item @code{pansy} @tab @i{unknown}
+@item @code{pirate} @tab Original Perl/PHP version by Dougal Campbell, with enhancements by Mark Lindner
+@item @code{postmodern} @tab @i{unknown}
+@item @code{redneck} @tab Brand Hilton
+@item @code{valspeak} @tab @i{unknown}
+@item @code{warez} @tab Ian Johnston, with enhancements by Mark Lindner
+@item @code{wrap} @tab Mark Lindner
+@end multitable
+
+@sp 1
+
+The filters were repackaged, integrated, optimized, and documented by
+Mark Lindner (@email{markl@@gnu.org}).
+
+@node Software License, Type and Function Index, Credits, Top
+@comment  node-name,  next,  previous,  up
+@chapter Software License
+
+@include gpl.texi
+
+@node Type and Function Index, , Software License, Top
+@comment  node-name,  next,  previous,  up
+@unnumbered Type and Function Index
+
+@printindex tp
+
+@printindex fn
+
+
+@bye

@@ -1,0 +1,80 @@
+.TH talkfilters 6 "8 Dec 2003" "Version 2.3"
+.SH NAME
+b1ff, brooklyn, chef, cockney, drawl, fudd, funetak, jethro, jive, kraut,
+pansy, pirate, postmodern, redneck, valspeak, warez
+\- GNU talk filters
+.SH SYNOPSIS
+\fIfilter\fP [\fB--version --help\fP]
+.LP
+.SH DESCRIPTION
+.PP
+The GNU Talkfilters are filter programs that convert ordinary English
+text into text that mimics a stereotyped or otherwise humorous
+dialect. Each program reads from standard input and writes to standard
+output.
+
+Since the filters do word and substring substitution on the text they
+process, any word-wrap formatting of the original text will not be
+preserved. Use the \fBwrap\fP filter to word-wrap the output of a talk 
+filter.
+.TP
+.B austro
+Austrian accent (Ahhhnold)
+.TP
+.B b1ff
+B1FF of USENET yore
+.TP
+.B brooklyn
+Brooklyn accent
+.TP
+.B chef
+Swedish Chef (from The Muppet Show)
+.TP
+.B cockney
+Londoner accent
+.TP
+.B drawl
+Southern drawl
+.TP
+.B dubya
+George "Dubya" Bush
+.TP
+.B fudd
+Elmer Fudd (from the Looney Tunes cartoons)
+.TP
+.B funetak
+Thick Asian accent
+.TP
+.B jethro
+Jethro from The Beverly Hillbillies
+.TP
+.B jive
+1970s Jive
+.TP
+.B kraut
+German accent
+.TP
+.B pansy
+Effeminate male
+.TP
+.B pirate
+Pirate talk
+.TP
+.B postmodern
+Postmodernist talk ("Feminazi")
+.TP
+.B redneck
+Country redneck
+.TP
+.B valspeak
+Valley talk
+.TP
+.B warez
+H4x0r code
+.SH SEE ALSO
+.BR wrap (1),
+.BR less (1)
+.SH AUTHORS
+Edward Betts, Clement Cole, John Hagerman, Brand Hilton, Adam Hudd,
+Ian Johnston, Daniel V. Klein, Mark Lindner, Stephen K. Mulrine, Duane
+Paulson, Samuel Stoddard, Matt Welsh, David Whitten, et al.

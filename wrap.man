@@ -1,0 +1,33 @@
+.TH wrap 1 "15 Dec 1998" "Version 1.3"
+.SH NAME
+wrap
+\- filter to word-wrap text
+.SH SYNOPSIS
+\fBwrap\fP [\fB-w\fP \fIwidth\fP] [\fB--version --help\fP]
+.SH DESCRIPTION
+.PP
+This program reads text from standard input, word-wraps it, and writes
+the result to standard output. The text is formatted to fit a
+specified number of columns. Extraneous whitespace is removed and
+lines are only broken on word boundaries.
+.SH OPTIONS
+.TP 5
+.B --help
+Display a command synopsis and exit.
+.TP 5
+.B --version
+Display the program's version information and exit.
+.TP 5
+\fB-w\fP \fIwidth\fP
+Specify the maximum number of columns \fIwidth\fP that the text may
+span. The minimum value of \fIwidth\fP is 10.
+.SH SEE ALSO
+.BR less (1),
+.BR fold (1)
+.SH NOTES
+If \fBwrap\fP encounters a word that is longer than the specified
+column width, the word is broken across two or more lines to fit
+within that number of columns.
+.SH AUTHOR
+Mark Lindner
+

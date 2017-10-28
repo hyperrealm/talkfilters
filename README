@@ -1,0 +1,43 @@
+
+This group of filters serves no utilitarian purpose but is nonetheless
+quite amusing and hence should be maintained for posterity.
+
+These programs are maintained by Mark Lindner
+(mark_a_lindner@yahoo.com). The original authors of these programs are
+listed in the file `AUTHORS'. 
+
+If you are the author of one of these programs and do not wish to have
+it distributed in this package, contact the maintainer immediately.
+
+These filters are provided for amusement only. No racial or societal
+slurs are intended.
+
+Some of these filters contain vulgarity, and thus are inappropriate
+for some audiences. If you find something offensive in one or more of
+these filters, please do not flame me or ask me to censor or remove
+the filter(s) in question. Requests of this type will be silently
+ignored. Note that I am only the package maintainer; I am NOT the
+author of the translation rules in the filters (with the exception of
+the `wrap' filter).
+
+These filters are not guaranteed to be idempotent across all inputs;
+that is, repeated applications of a given filter on an input may cause
+the output to differ each time. Moreover, some of the filters use
+randomization techniques so a given input is not guaranteed to produce
+the same output across invocations.
+
+You no longer need to have `flex' (or any other lexer program, for
+that matter) to build and use this package. However, you *will* need a
+lexer (specifically, `flex') to recompile if you change any `.l'
+files.
+
+The GAIM plugin is no longer distributed with TalkFilters, as it's now
+part of a separate project, "Gaim Plugin Pack", which can be found
+here: http://guifications.sourceforge.net/PluginPack/
+
+The package may be built on Windows using either the MinGW
+environment, or Visual Studio C++ 2005, Visual Studio.NET 2005, or
+later.
+
+Mark Lindner
+November 1, 2006.

@@ -1,0 +1,52 @@
+
+To the best of my knowledge, here are the known authors for these
+filters. If you have additions/corrections to this information, please
+submit them.
+
+The filters were collected into a single package, optimized, and
+converted to work as a library by Mark Lindner.
+
+------------------------------------------------------------------------------
+
+austro     - Tom van Nes
+
+b1ff	   - Matt Welsh, David Whitten
+
+brooklyn   - Daniel V. Klein [originally named "nyc"]
+
+chef	   - John Hagerman
+
+cockney	   - "ken" by Stephen K Mulrine, Edward Betts; merged
+	     with "cockney" by (unknown) which was expanded significantly by
+	     Samuel Stoddard
+
+drawl	   - Adam Hudd
+
+dubya	   - (anonymous submission)
+
+fudd	   - (unknown)
+
+funetak	   - "Eclipse Enterprises" (unknown)
+
+jethro	   - Duane Paulson
+
+jive	   - Daniel V. Klein, Clement Cole, Samuel Stoddard
+
+kraut	   - John Sparks
+
+pansy	   - (unknown)
+
+pirate     - Dougal Campbell (originally Perl code); conversion and additions
+             by Mark Lindner
+
+postmodern - (unknown) [this filter is also known as "feminazi"]
+
+redneck	   - Brand Hilton
+
+valspeak   - (unknown)
+
+warez	   - Ian Johnston
+
+wrap	   - Mark Lindner
+
+------------------------------------------------------------------------------

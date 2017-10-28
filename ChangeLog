@@ -1,0 +1,116 @@
+2017-10-27  Mark Lindner  <markl@avalon>
+
+	* *.l - fixed comment which caused flex error
+	* <multiple> - cleaned up and updated build files
+
+2007-12-29  Mark Lindner  <markl@neuromancer>
+
+	* talkfilters.c, talkfilters.h, Makefile.am, Makefile.in, config.h,
+	  - MinGW & VC++ build fixes
+	* config.guess, config.sub, ltmain.sh, aclocal.m4, libtool
+	  - updated to newest
+
+2006-11-21  Mark Lindner  <markl@neuromancer>
+
+	* pirate.l - minor improvements
+	* dubya.l - minor improvements
+	* common.h - use VERSION instead of hardcoded version number
+
+2006-10-27  Mark Lindner  <markl@neuromancer>
+
+	* common.c - fix compiler warning
+	* *.sln, *.vcproj, win32/unistd.h - add Visual C++ Express 2005
+	  build files
+	* talkfilters.c - update version number
+	* common.h - use C99 varargs macro notation; added some #defines for
+	  win32
+	* pirate.l - added rule
+	* talkfilters.h - added extern "C" guard
+
+2006-09-18  Mark Lindner  <markl@neuromancer>
+
+	* common.c - fix compiler warnings
+	* talkfilters.h, talkfilters.c, configure.in, Makefile.am
+	  - changes for DLL creation
+
+2006-04-17  Mark Lindner  <markl@neuromancer>
+
+	* funetak.l - replaced random() with gtf_random(); eliminates build
+	  error in mingw
+
+2006-04-15  Mark Lindner  <markl@neuromancer>
+
+	* <multiple> - added support for pkg-config
+
+2005-11-21  Mark Lindner  <markl@neuromancer>
+
+	* gaim_plugin/talkfilters.c, Makefile.am - Removed the GAIM plugin,
+	  as it's now being maintained elsewhere.
+	* common.c, talkfilters.c, common.h, configure.in - Build fixes.
+	* talkfilters.spec - added new file
+	The above all contributed by Peter Lawler
+
+2005-01-10  Mark Lindner  <markl@neuromancer>
+
+	* gaim_plugin/talkfilters.c - Updated to work with GAIM 1.1.0.
+
+2004-06-28  Mark Lindner  <markl@neuromancer>
+
+	* gaim_plugin/talkfilters.c - Incorporated bug fix submitted by a user.
+	  The bug caused the IM to only be filtered locally (not sent in
+	  filtered form to the other end). This must be a regression when
+	  moving to GAIM 0.78/0.79.
+
+2004-06-26  Mark Lindner  <markl@neuromancer>
+
+	* gaim_plugin/* - Updated plugin to work with GAIM 0.79, and clarified
+	  installation instructions.
+
+2004-01-06  Mark Lindner  <markl@neuromancer>
+
+	* funetak.l - Fixed a capitalization problem.
+	* austro.l - Added missing rules, whose absence caused garbled output
+	  from filter function.
+	* gaim_plugin/* - New plugin for GAIM.
+
+2003-12-02  Mark Lindner  <markl@neuromancer>
+
+	* *.l, *.c, *.h - Added contributed austro and dubya filters.
+
+2003-07-22  Mark Lindner  <markl@neuromancer>
+
+	* *.l - Added rules to leave HTML tags intact. Do you see where
+          I'm going with this? ;-)
+	* kraut.l - Minor fixes and corrections (submitted by Thomas M. Ott)
+	* talkfilters.man - Documentation updates.
+	* configure.in - Rewrote `flex' check.
+
+2003-04-29  Mark Lindner  <markl@neuromancer>
+
+	* jive.l - Added a few more rules.
+
+2003-02-13  Mark Lindner  <markl@dystance.net>
+
+	* *.l - Made a fix so that compilation doesn't fail with older
+	versions of gcc: moved declaration of _yybuf so that it's before the
+	first statement in the filter function.
+
+2003-02-11  Mark Lindner  <markl@dystance.net>
+
+	* <multiple> - Complete overhaul of package; added automake/libtool
+	support, and produce not only executables but also a library.
+
+Tue Jul  4 21:33:08 2000  Mark A. Lindner <markl@dystance.net>
+
+	* Makefile.in: Modified `dist' target and added `info' target.
+
+	* talkfilters.texi: Texinfo documentation added.
+
+Thu Dec 31 17:09:45 1998  Joel N. Weber II  <devnull@melange.gnu.org>
+
+	* configure.in: Rewrote the check for lex to just check for flex
+	and bail if it isn't found.
+
+	* src/talkfilters-1.0/Makefile.in (LIBS): Hardcode -lfl, since we
+	always use flex.
+
