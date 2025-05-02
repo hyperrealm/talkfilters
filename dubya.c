@@ -1,6 +1,6 @@
-#line 1 "dubya.c"
+#line 2 "dubya.c"
 
-#line 3 "dubya.c"
+#line 4 "dubya.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -1096,7 +1096,7 @@ goto find_rule; \
 char *yytext;
 #line 1 "dubya.l"
 /* GNU Talkfilters
-   Copyright (C) 1998-2003 Free Software Foundation, Inc.
+   Copyright (C) 1998-2025 Free Software Foundation, Inc.
 
    This file is part of GNU Talkfilters
 
@@ -1110,9 +1110,9 @@ char *yytext;
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
    General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this software; see the file COPYING.  If not, write to the
-   Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+   You should have received a copy of the GNU Library General Public
+   License along with this library; if not, see
+   <http://www.gnu.org/licenses/>.
 */
 #line 35 "dubya.l"
 
@@ -1121,9 +1121,9 @@ char *yytext;
 
 #define YY_DECL int yylex(gtf_databuf_t *buf)
 
-#line 1124 "dubya.c"
+#line 1125 "dubya.c"
 
-#line 1126 "dubya.c"
+#line 1127 "dubya.c"
 
 #define INITIAL 0
 #define NIW 1
@@ -1351,7 +1351,7 @@ YY_DECL
 #line 50 "dubya.l"
 
 
-#line 1354 "dubya.c"
+#line 1355 "dubya.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -2085,7 +2085,7 @@ YY_RULE_SETUP
 #line 188 "dubya.l"
 ECHO;
 	YY_BREAK
-#line 2088 "dubya.c"
+#line 2089 "dubya.c"
 			case YY_STATE_EOF(INITIAL):
 			case YY_STATE_EOF(NIW):
 			case YY_STATE_EOF(INW):

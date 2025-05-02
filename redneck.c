@@ -1,6 +1,6 @@
-#line 1 "redneck.c"
+#line 2 "redneck.c"
 
-#line 3 "redneck.c"
+#line 4 "redneck.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -1957,7 +1957,7 @@ goto find_rule; \
 char *yytext;
 #line 1 "redneck.l"
 /* GNU Talkfilters
-   Copyright (C) 1998-2003 Free Software Foundation, Inc.
+   Copyright (C) 1998-2025 Free Software Foundation, Inc.
 
    This file is part of GNU Talkfilters
 
@@ -1971,9 +1971,9 @@ char *yytext;
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
    General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this software; see the file COPYING.  If not, write to the
-   Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+   You should have received a copy of the GNU Library General Public
+   License along with this library; if not, see
+   <http://www.gnu.org/licenses/>.
 */
 /* Written by Brand Hilton */
 #line 36 "redneck.l"
@@ -1983,9 +1983,9 @@ char *yytext;
 
 #define YY_DECL int yylex(gtf_databuf_t *buf)
 
-#line 1986 "redneck.c"
+#line 1987 "redneck.c"
 
-#line 1988 "redneck.c"
+#line 1989 "redneck.c"
 
 #define INITIAL 0
 #define NIW 1
@@ -2213,7 +2213,7 @@ YY_DECL
 #line 51 "redneck.l"
 
 
-#line 2216 "redneck.c"
+#line 2217 "redneck.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -5057,7 +5057,7 @@ YY_RULE_SETUP
 #line 384 "redneck.l"
 ECHO;
 	YY_BREAK
-#line 5060 "redneck.c"
+#line 5061 "redneck.c"
 			case YY_STATE_EOF(INITIAL):
 			case YY_STATE_EOF(NIW):
 			case YY_STATE_EOF(INW):

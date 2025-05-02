@@ -1,6 +1,6 @@
-#line 1 "funetak.c"
+#line 2 "funetak.c"
 
-#line 3 "funetak.c"
+#line 4 "funetak.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -1092,7 +1092,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "funetak.l"
 /* GNU Talkfilters
-   Copyright (C) 1998-2003 Free Software Foundation, Inc.
+   Copyright (C) 1998-2025 Free Software Foundation, Inc.
 
    This file is part of GNU Talkfilters
 
@@ -1106,9 +1106,9 @@ char *yytext;
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
    General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this software; see the file COPYING.  If not, write to the
-   Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+   You should have received a copy of the GNU Library General Public
+   License along with this library; if not, see
+   <http://www.gnu.org/licenses/>.
 */
 /* static char version[] = "funetak. v1.2. Eclipse Enterprises"; */
 #line 35 "funetak.l"
@@ -1118,9 +1118,9 @@ char *yytext;
 
 #define YY_DECL int yylex(gtf_databuf_t *buf)
 
-#line 1121 "funetak.c"
+#line 1122 "funetak.c"
 
-#line 1123 "funetak.c"
+#line 1124 "funetak.c"
 
 #define INITIAL 0
 #define NIW 1
@@ -1342,7 +1342,7 @@ YY_DECL
 #line 50 "funetak.l"
 
 
-#line 1345 "funetak.c"
+#line 1346 "funetak.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -2551,7 +2551,7 @@ YY_RULE_SETUP
 #line 240 "funetak.l"
 ECHO;
 	YY_BREAK
-#line 2554 "funetak.c"
+#line 2555 "funetak.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(NIW):
 case YY_STATE_EOF(INW):

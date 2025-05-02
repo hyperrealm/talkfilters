@@ -1,6 +1,6 @@
-#line 1 "postmodern.c"
+#line 2 "postmodern.c"
 
-#line 3 "postmodern.c"
+#line 4 "postmodern.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -890,7 +890,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "postmodern.l"
 /* GNU Talkfilters
-   Copyright (C) 1998-2003 Free Software Foundation, Inc.
+   Copyright (C) 1998-2025 Free Software Foundation, Inc.
 
    This file is part of GNU Talkfilters
 
@@ -904,9 +904,9 @@ char *yytext;
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
    General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this software; see the file COPYING.  If not, write to the
-   Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+   You should have received a copy of the GNU Library General Public
+   License along with this library; if not, see
+   <http://www.gnu.org/licenses/>.
 */
 /*
 Postmodern feminazi talk
@@ -920,8 +920,8 @@ various humanities type classes
 
 #define YY_DECL int yylex(gtf_databuf_t *buf)
 
-#line 923 "postmodern.c"
 #line 924 "postmodern.c"
+#line 925 "postmodern.c"
 
 #define INITIAL 0
 
@@ -1141,7 +1141,7 @@ YY_DECL
 #line 50 "postmodern.l"
 
 
-#line 1144 "postmodern.c"
+#line 1145 "postmodern.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1725,7 +1725,7 @@ YY_RULE_SETUP
 #line 109 "postmodern.l"
 ECHO;
 	YY_BREAK
-#line 1728 "postmodern.c"
+#line 1729 "postmodern.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 

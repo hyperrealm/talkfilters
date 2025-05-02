@@ -1,6 +1,6 @@
-#line 1 "jive.c"
+#line 2 "jive.c"
 
-#line 3 "jive.c"
+#line 4 "jive.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -1733,7 +1733,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "jive.l"
 /* GNU Talkfilters
-   Copyright (C) 1998-2003 Free Software Foundation, Inc.
+   Copyright (C) 1998-2025 Free Software Foundation, Inc.
 
    This file is part of GNU Talkfilters
 
@@ -1747,9 +1747,9 @@ char *yytext;
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
    General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this software; see the file COPYING.  If not, write to the
-   Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+   You should have received a copy of the GNU Library General Public
+   License along with this library; if not, see
+   <http://www.gnu.org/licenses/>.
 */
 #line 33 "jive.l"
 
@@ -1758,9 +1758,9 @@ char *yytext;
 
 #define YY_DECL int yylex(gtf_databuf_t *buf)
 
-#line 1761 "jive.c"
+#line 1762 "jive.c"
 
-#line 1763 "jive.c"
+#line 1764 "jive.c"
 
 #define INITIAL 0
 #define NIW 1
@@ -1982,7 +1982,7 @@ YY_DECL
 #line 48 "jive.l"
 
 
-#line 1985 "jive.c"
+#line 1986 "jive.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -4427,7 +4427,7 @@ YY_RULE_SETUP
 #line 336 "jive.l"
 ECHO;
 	YY_BREAK
-#line 4430 "jive.c"
+#line 4431 "jive.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(NIW):
 case YY_STATE_EOF(INW):

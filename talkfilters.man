@@ -1,4 +1,4 @@
-.TH talkfilters 6 "8 Dec 2003" "Version 2.3"
+.TH talkfilters 6 "1 May 2025" "Version 2.4"
 .SH NAME
 b1ff, brooklyn, chef, cockney, drawl, fudd, funetak, jethro, jive, kraut,
 pansy, pirate, postmodern, redneck, valspeak, warez

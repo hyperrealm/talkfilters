@@ -1,6 +1,6 @@
-#line 1 "kraut.c"
+#line 2 "kraut.c"
 
-#line 3 "kraut.c"
+#line 4 "kraut.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -820,7 +820,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "kraut.l"
 /* GNU Talkfilters
-   Copyright (C) 1998-2003 Free Software Foundation, Inc.
+   Copyright (C) 1998-2025 Free Software Foundation, Inc.
 
    This file is part of GNU Talkfilters
 
@@ -834,9 +834,9 @@ char *yytext;
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
    General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this software; see the file COPYING.  If not, write to the
-   Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+   You should have received a copy of the GNU Library General Public
+   License along with this library; if not, see
+   <http://www.gnu.org/licenses/>.
 */
 #line 33 "kraut.l"
 
@@ -845,8 +845,8 @@ char *yytext;
 
 #define YY_DECL int yylex(gtf_databuf_t *buf)
 
-#line 848 "kraut.c"
 #line 849 "kraut.c"
+#line 850 "kraut.c"
 
 #define INITIAL 0
 
@@ -1066,7 +1066,7 @@ YY_DECL
 #line 45 "kraut.l"
 
 
-#line 1069 "kraut.c"
+#line 1070 "kraut.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1450,7 +1450,7 @@ YY_RULE_SETUP
 #line 114 "kraut.l"
 ECHO;
 	YY_BREAK
-#line 1453 "kraut.c"
+#line 1454 "kraut.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 

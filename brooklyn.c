@@ -1,6 +1,6 @@
-#line 1 "brooklyn.c"
+#line 2 "brooklyn.c"
 
-#line 3 "brooklyn.c"
+#line 4 "brooklyn.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -891,7 +891,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "brooklyn.l"
 /* GNU Talkfilters
-   Copyright (C) 1998-2003 Free Software Foundation, Inc.
+   Copyright (C) 1998-2025 Free Software Foundation, Inc.
 
    This file is part of GNU Talkfilters
 
@@ -905,9 +905,9 @@ char *yytext;
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
    General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this software; see the file COPYING.  If not, write to the
-   Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+   You should have received a copy of the GNU Library General Public
+   License along with this library; if not, see
+   <http://www.gnu.org/licenses/>.
 */
 /*
  *	Lex filter to transform plain English into Brooklyn English.
@@ -929,8 +929,8 @@ static const char *expletives[] = { "Okay?", "Right?", "Yuh got me so fahr?",
 				    "Ya' dig?", "Yuh with me?" };
 #define EXPLETIVES_LEN (sizeof(expletives) / sizeof(expletives[0]))
 
-#line 932 "brooklyn.c"
 #line 933 "brooklyn.c"
+#line 934 "brooklyn.c"
 
 #define INITIAL 0
 #define NIW 1
@@ -1152,7 +1152,7 @@ YY_DECL
 #line 54 "brooklyn.l"
 
 
-#line 1155 "brooklyn.c"
+#line 1156 "brooklyn.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1596,7 +1596,7 @@ YY_RULE_SETUP
 #line 130 "brooklyn.l"
 ECHO;
 	YY_BREAK
-#line 1599 "brooklyn.c"
+#line 1600 "brooklyn.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(NIW):
 case YY_STATE_EOF(INW):

@@ -1,6 +1,6 @@
-#line 1 "pansy.c"
+#line 2 "pansy.c"
 
-#line 3 "pansy.c"
+#line 4 "pansy.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -776,7 +776,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "pansy.l"
 /* GNU Talkfilters
-   Copyright (C) 1998-2003 Free Software Foundation, Inc.
+   Copyright (C) 1998-2025 Free Software Foundation, Inc.
 
    This file is part of GNU Talkfilters
 
@@ -790,9 +790,9 @@ char *yytext;
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
    General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this software; see the file COPYING.  If not, write to the
-   Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+   You should have received a copy of the GNU Library General Public
+   License along with this library; if not, see
+   <http://www.gnu.org/licenses/>.
 */
 #line 37 "pansy.l"
 
@@ -801,8 +801,8 @@ char *yytext;
 
 #define YY_DECL int yylex(gtf_databuf_t *buf)
 
-#line 804 "pansy.c"
 #line 805 "pansy.c"
+#line 806 "pansy.c"
 
 #define INITIAL 0
 
@@ -1022,7 +1022,7 @@ YY_DECL
 #line 45 "pansy.l"
 
 
-#line 1025 "pansy.c"
+#line 1026 "pansy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1286,7 +1286,7 @@ YY_RULE_SETUP
 #line 90 "pansy.l"
 ECHO;
 	YY_BREAK
-#line 1289 "pansy.c"
+#line 1290 "pansy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 

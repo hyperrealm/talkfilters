@@ -1,16 +1,16 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(talkfilters, 2.3.8, hyperrealm@gmail.com, talkfilters,
-  [https://hyperrealm.github.io/talkfilters/])
+AC_INIT([talkfilters],[2.4],[hyperrealm@gmail.com],[talkfilters],[https://hyperrealm.github.io/talkfilters/])
 AC_CONFIG_AUX_DIR([aux-build])
 AC_CANONICAL_TARGET
 AM_INIT_AUTOMAKE
-AM_CONFIG_HEADER(config.h)
+AC_CONFIG_MACRO_DIRS([m4])
+AC_CONFIG_HEADERS(config.h)
 
 dnl Checks for programs.
 AC_PROG_INSTALL
 AC_PROG_CC
 
-AM_PROG_LEX
+AM_PROG_LEX(noyywrap)
 if test Z"$LEX" != Zflex; then
 cat <<EOF
 *******************************************************************
@@ -22,15 +22,13 @@ some of the .l files in this package.
 EOF
 fi
 
-AC_LIBTOOL_WIN32_DLL
-AC_PROG_LIBTOOL
-
-dnl Checks for libraries.
-
-dnl AC_CHECK_LIB(fl, main)
+LT_INIT(win32-dll)
 
 dnl Checks for header files.
-AC_HEADER_STDC
+
+AC_CHECK_INCLUDES_DEFAULT
+AC_PROG_EGREP
+
 AC_CHECK_HEADERS(unistd.h string.h)
 
 dnl Checks for typedefs, structures, and compiler characteristics.
@@ -48,4 +46,5 @@ esac
 AM_CONDITIONAL(GNU_WIN, test x$gnuwin = xyes)
 
 
-AC_OUTPUT(Makefile doc/Makefile talkfilters.pc)
+AC_CONFIG_FILES([Makefile doc/Makefile talkfilters.pc])
+AC_OUTPUT

@@ -1,6 +1,6 @@
-#line 1 "warez.c"
+#line 2 "warez.c"
 
-#line 3 "warez.c"
+#line 4 "warez.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -839,7 +839,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "warez.l"
 /* GNU Talkfilters
-   Copyright (C) 1998-2003 Free Software Foundation, Inc.
+   Copyright (C) 1998-2025 Free Software Foundation, Inc.
 
    This file is part of GNU Talkfilters
 
@@ -853,25 +853,25 @@ char *yytext;
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
    General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this software; see the file COPYING.  If not, write to the
-   Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+   You should have received a copy of the GNU Library General Public
+   License along with this library; if not, see
+   <http://www.gnu.org/licenses/>.
 */
-/* 
- * This is the w4r3z filter, written by Ian Johnston, reaper@muppetlabs.com.  
- * 
+/*
+ * This is the w4r3z filter, written by Ian Johnston, reaper@muppetlabs.com.
+ *
  * Copyright (C) 1998  Ian Johnston
- * 
+ *
  * GNU Talkfilters is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This software is distributed in the hope that it will be amusing,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this software; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -945,8 +945,8 @@ static const char *__warez_rand(const char **array, int length)
   return(array[i]);
 }
 
-#line 948 "warez.c"
 #line 949 "warez.c"
+#line 950 "warez.c"
 
 #define INITIAL 0
 
@@ -1164,7 +1164,7 @@ YY_DECL
 #line 128 "warez.l"
 
 
-#line 1167 "warez.c"
+#line 1168 "warez.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1512,7 +1512,7 @@ YY_RULE_SETUP
 #line 197 "warez.l"
 ECHO;
 	YY_BREAK
-#line 1515 "warez.c"
+#line 1516 "warez.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 

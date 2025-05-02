@@ -6,8 +6,8 @@
 @setfilename talkfilters.info
 @settitle talkfilters
 
-@set edition 2.3.9
-@set update-date 31 Oct 2017
+@set edition 2.4
+@set update-date 1 May 2025
 
 @comment %**end of header
 
@@ -28,7 +28,7 @@
 
 @page
 @vskip 0pt plus 1filll
-Copyright @copyright{} 1998-2018 Free Software Foundation, Inc.
+Copyright @copyright{} 1998-2025 Free Software Foundation, Inc.
 
 Permission is granted to make and distribute verbatim copies of
 this manual provided the copyright notice and this permission notice

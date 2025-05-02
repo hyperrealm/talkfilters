@@ -1,9 +1,8 @@
-# 
 
 SUBDIRS = doc
 
 filters = austro b1ff brooklyn chef cockney drawl dubya fudd funetak \
-	jethro jive kraut pansy pirate postmodern redneck valspeak warez 
+	jethro jive kraut pansy pirate postmodern redneck valspeak warez
 
 bin_PROGRAMS = $(filters) wrap
 

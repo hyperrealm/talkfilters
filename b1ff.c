@@ -1,6 +1,6 @@
-#line 1 "b1ff.c"
+#line 2 "b1ff.c"
 
-#line 3 "b1ff.c"
+#line 4 "b1ff.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -894,7 +894,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "b1ff.l"
 /* GNU Talkfilters
-   Copyright (C) 1998-2003 Free Software Foundation, Inc.
+   Copyright (C) 1998-2025 Free Software Foundation, Inc.
 
    This file is part of GNU Talkfilters
 
@@ -908,9 +908,9 @@ char *yytext;
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
    General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this software; see the file COPYING.  If not, write to the
-   Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+   You should have received a copy of the GNU Library General Public
+   License along with this library; if not, see
+   <http://www.gnu.org/licenses/>.
 */
 /*
  
@@ -983,9 +983,9 @@ modified and improved by David Whitten
 
 #define YY_DECL int yylex(gtf_databuf_t *buf)
 
-#line 986 "b1ff.c"
+#line 987 "b1ff.c"
 
-#line 988 "b1ff.c"
+#line 989 "b1ff.c"
 
 #define INITIAL 0
 #define INW 1
@@ -1207,7 +1207,7 @@ YY_DECL
 #line 114 "b1ff.l"
 
 
-#line 1210 "b1ff.c"
+#line 1211 "b1ff.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1818,7 +1818,7 @@ YY_RULE_SETUP
 #line 207 "b1ff.l"
 ECHO;
 	YY_BREAK
-#line 1821 "b1ff.c"
+#line 1822 "b1ff.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(INW):
 case YY_STATE_EOF(NIW):

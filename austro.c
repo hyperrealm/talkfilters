@@ -1,6 +1,6 @@
-#line 1 "austro.c"
+#line 2 "austro.c"
 
-#line 3 "austro.c"
+#line 4 "austro.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -751,7 +751,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "austro.l"
 /* GNU Talkfilters
-   Copyright (C) 1998-2003 Free Software Foundation, Inc.
+   Copyright (C) 1998-2025 Free Software Foundation, Inc.
 
    This file is part of GNU Talkfilters
 
@@ -765,9 +765,9 @@ char *yytext;
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
    General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this software; see the file COPYING.  If not, write to the
-   Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+   You should have received a copy of the GNU Library General Public
+   License along with this library; if not, see
+   <http://www.gnu.org/licenses/>.
 */
 #line 38 "austro.l"
 
@@ -776,8 +776,8 @@ char *yytext;
 
 #define YY_DECL int yylex(gtf_databuf_t *buf)
 
-#line 779 "austro.c"
 #line 780 "austro.c"
+#line 781 "austro.c"
 
 #define INITIAL 0
 
@@ -995,7 +995,7 @@ YY_DECL
 #line 46 "austro.l"
 
 
-#line 998 "austro.c"
+#line 999 "austro.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1224,7 +1224,7 @@ YY_RULE_SETUP
 #line 84 "austro.l"
 ECHO;
 	YY_BREAK
-#line 1227 "austro.c"
+#line 1228 "austro.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
