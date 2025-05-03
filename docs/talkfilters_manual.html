@@ -1,0 +1,1022 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>talkfilters</title>
+
+<meta name="description" content="talkfilters">
+<meta name="keywords" content="talkfilters">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="#Top" rel="start" title="Top">
+<link href="#Type-and-Function-Index" rel="index" title="Type and Function Index">
+<link href="#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="#Introduction" rel="next" title="Introduction">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<h1 class="settitle" align="center">talkfilters</h1>
+
+
+
+
+
+
+
+<div class="top" id="Top">
+<div class="header">
+<p>
+Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Type-and-Function-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="talkfilters"></span><h1 class="top">talkfilters</h1>
+
+
+<div class="Contents_element" id="SEC_Contents">
+<h2 class="contents-heading">Table of Contents</h2>
+
+<div class="contents">
+
+<ul class="no-bullet">
+  <li><a id="toc-Introduction-1" href="#Introduction">1 Introduction</a></li>
+  <li><a id="toc-The-Filters-1" href="#The-Filters">2 The Filters</a></li>
+  <li><a id="toc-The-Talkfilters-Library-1" href="#The-Talkfilters-Library">3 The Talkfilters Library</a></li>
+  <li><a id="toc-Writing-New-Filters-1" href="#Writing-New-Filters">4 Writing New Filters</a></li>
+  <li><a id="toc-Credits-1" href="#Credits">5 Credits</a></li>
+  <li><a id="toc-Software-License-1" href="#Software-License">6 Software License</a>
+  <ul class="no-bullet">
+    <li><a id="toc-Appendix_003a-How-to-Apply-These-Terms-to-Your-New-Programs" href="#Appendix_003a-How-to-Apply-These-Terms-to-Your-New-Programs">Appendix: How to Apply These Terms to Your New Programs</a></li>
+  </ul></li>
+  <li><a id="toc-Type-and-Function-Index-1" href="#Type-and-Function-Index" rel="index">Type and Function Index</a></li>
+</ul>
+</div>
+</div>
+<hr>
+<div class="chapter" id="Introduction">
+<div class="header">
+<p>
+Next: <a href="#The-Filters" accesskey="n" rel="next">The Filters</a>, Previous: <a href="#Top" accesskey="p" rel="prev">talkfilters</a>, Up: <a href="#Top" accesskey="u" rel="up">talkfilters</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Type-and-Function-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Introduction-1"></span><h2 class="chapter">1 Introduction</h2>
+
+<p>The GNU Talk Filters are filter programs that convert English text into
+text that mimics a stereotyped or otherwise humorous type of
+speech. This package is not an original work but rather a collection and
+integration of existing filter programs that were written by various
+people and that have been in the public domain for many years. For a
+list of authors, see <a href="#Credits">Credits</a>.
+</p>
+<p>The filters are provided in both executable and library form. See <a href="#The-Filters">The Filters</a> for synopses of the programs, and <a href="#The-Talkfilters-Library">The Talkfilters Library</a>
+for a description of the library API.
+</p>
+<p>Since the filters do word and substring substitution on the text they
+process, any word-wrap formatting of the original text will not be
+preserved in the output. The included <code>wrap</code> filter program may be
+used to reformat the output of the other filters to fit within a
+specified number of columns.
+</p>
+<p>Some of these filters contain vulgarity, and thus are not appropriate
+for all audiences. If you find something offensive in one or more of
+these filters, please do not flame the maintainer of this package or the
+original authors, or request that the filter(s) in question be censored
+or removed; requests of this type will be summarily ignored.
+</p>
+<p>These filters are not guaranteed to be idempotent across all inputs;
+that is, repeated applications of a given filter on an input may cause
+the output to differ each time. Moreover, some of the filters use
+randomization techniques so a given input is not guaranteed to produce
+the same output across invocations.
+</p>
+<p>The &lsquo;flex&rsquo; lexer (or any other lexer program, for that matter) is not
+required to build and use this package. However, &lsquo;flex&rsquo; <i>is</i> required
+to rebuild the filters if the <samp>.l</samp> source files are changed.
+</p>
+<p><b>These filters are provided for amusement only. No racial or societal
+slurs are intended nor should be inferred.</b>
+</p>
+<hr>
+</div>
+<div class="chapter" id="The-Filters">
+<div class="header">
+<p>
+Next: <a href="#The-Talkfilters-Library" accesskey="n" rel="next">The Talkfilters Library</a>, Previous: <a href="#Introduction" accesskey="p" rel="prev">Introduction</a>, Up: <a href="#Top" accesskey="u" rel="up">talkfilters</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Type-and-Function-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="The-Filters-1"></span><h2 class="chapter">2 The Filters</h2>
+
+<p>The filters provided in this package are enumerated below. This chapter
+describes the synopses for the individual filter programs; for a
+description of the library API, see <a href="#The-Talkfilters-Library">The Talkfilters Library</a>.
+</p>
+<br>
+
+<table>
+<tr><td width="20%"><code>austro</code></td><td width="80%">Austrian (Ahhhhnold)</td></tr>
+<tr><td width="20%"><code>b1ff</code></td><td width="80%">B1FF of U<small>SENET</small> yore</td></tr>
+<tr><td width="20%"><code>brooklyn</code></td><td width="80%">Brooklyn accent</td></tr>
+<tr><td width="20%"><code>chef</code></td><td width="80%">Swedish Chef (from <i>The Muppet Show</i>)</td></tr>
+<tr><td width="20%"><code>cockney</code></td><td width="80%">Londoner accent</td></tr>
+<tr><td width="20%"><code>drawl</code></td><td width="80%">Southern drawl</td></tr>
+<tr><td width="20%"><code>dubya</code></td><td width="80%">George &quot;Dubya&quot; Bush</td></tr>
+<tr><td width="20%"><code>fudd</code></td><td width="80%">Elmer Fudd (from the Looney Tunes cartoons)</td></tr>
+<tr><td width="20%"><code>funetak</code></td><td width="80%">Thick Asian accent</td></tr>
+<tr><td width="20%"><code>jethro</code></td><td width="80%">Jethro from <i>The Beverly Hillbillies</i></td></tr>
+<tr><td width="20%"><code>jive</code></td><td width="80%">1970&rsquo;s Jive</td></tr>
+<tr><td width="20%"><code>kraut</code></td><td width="80%">German accent</td></tr>
+<tr><td width="20%"><code>pansy</code></td><td width="80%">Effeminate male</td></tr>
+<tr><td width="20%"><code>pirate</code></td><td width="80%">Pirate talk</td></tr>
+<tr><td width="20%"><code>postmodern</code></td><td width="80%">Postmodernist talk (&ldquo;Feminazi&rdquo;)</td></tr>
+<tr><td width="20%"><code>redneck</code></td><td width="80%">Country redneck</td></tr>
+<tr><td width="20%"><code>valspeak</code></td><td width="80%">Valley talk</td></tr>
+<tr><td width="20%"><code>warez</code></td><td width="80%">H4x0r code</td></tr>
+<tr><td width="20%"><code>wrap</code></td><td width="80%">Word-wrap filter</td></tr>
+</table>
+
+<br>
+
+<p>The filter programs read from standard input and write to
+standard output. They all recognize the following switches:
+</p>
+<dl compact="compact">
+<dt><span><code>--version</code></span></dt>
+<dd><p>Print version information and exit.
+</p></dd>
+<dt><span><code>--help</code></span></dt>
+<dd><p>Print usage information and exit.
+</p></dd>
+</dl>
+
+<br>
+
+<p>The <code>wrap</code> filter program additionally recognizes the following
+switch:
+</p>
+<dl compact="compact">
+<dt><span><code>-w <i>width</i></code></span></dt>
+<dd><p>Specify the maximum number of columns <i>width</i> that the text may
+span. The minimum value of <i>width</i> is 10.
+</p></dd>
+</dl>
+
+<br>
+
+<p>An example usage might be:
+</p>
+<div class="example">
+<pre class="example">
+
+man ls | jive | wrap -w 78 | less
+
+</pre></div>
+
+<hr>
+</div>
+<div class="chapter" id="The-Talkfilters-Library">
+<div class="header">
+<p>
+Next: <a href="#Writing-New-Filters" accesskey="n" rel="next">Writing New Filters</a>, Previous: <a href="#The-Filters" accesskey="p" rel="prev">The Filters</a>, Up: <a href="#Top" accesskey="u" rel="up">talkfilters</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Type-and-Function-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="The-Talkfilters-Library-1"></span><h2 class="chapter">3 The Talkfilters Library</h2>
+
+<p>All of the filters in the GNU Talk Filters are available collectively as
+a C library which can be linked with other programs to provide embedded
+text filtering support. While the individual filter programs filter from
+standard input to standard output, the filtering functions in the
+library operate on in-memory buffers instead.
+</p>
+<p>This chapter describes the API to the Talkfilters library. All of the
+functions and types described below are declared in the header file
+<samp>talkfilters.h</samp>.
+</p>
+<dl class="def">
+<dt id="index-gtf_005ffilter_005fcount"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_count</strong> <em>(void)</em><a href='#index-gtf_005ffilter_005fcount' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>This function returns the number of filters in the library.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gtf_005ffilter_005flist"><span class="category">Function: </span><span><em>gtf_filter_t *</em> <strong>gtf_filter_list</strong> <em>(void)</em><a href='#index-gtf_005ffilter_005flist' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>This function returns a pointer to an array of <i>gtf_filter_t</i>
+structures which contain information about each of the filters in the
+library, including the filter&rsquo;s symbolic name, a brief description of
+the filter that is suitable for display purposes, and a pointer to the
+filter function.
+</p>
+</dd></dl>
+
+<p>The following C program illustrates the use of
+<code>gtf_filter_count()</code> and <code>gtf_filter_list()</code> to display
+information about each filter in the library and invoke the filter
+on some test input:
+</p>
+<br>
+
+<table class="cartouche" border="1"><tr><td>
+<div class="example">
+<pre class="example">#include &lt;stdio.h&gt;
+#include &lt;talkfilters.h&gt;
+
+int main(void)
+{
+  int ct, i;
+  const gtf_filter_t *filters, *fp;
+  const char *inbuf = &quot;This is a test.&quot;;
+  char outbuf[1024];
+
+  ct = gtf_filter_count();
+  printf(&quot;There are %d filters available.\n&quot;, ct);
+  filters = gtf_filter_list();
+  for(i = 0, fp = filters; i &lt; ct; i++, fp++)
+  {
+    printf(&quot;filter #%d: %s - %s\n&quot;, i + 1, fp-&gt;name, fp-&gt;desc);
+    fp-&gt;filter(inbuf, outbuf, sizeof(outbuf));
+    puts(outbuf);
+  }
+  
+  exit(0);
+}
+</pre></div>
+</td></tr></table>
+
+<span id="index-gtf_005ffilter_005ft"></span>
+<p>The type <i>gtf_filter_t</i> is a structure which contains the following
+members:
+</p>
+<dl compact="compact">
+<dt><span><code>char *name</code></span></dt>
+<dd><p>The symbolic name of the filter.
+</p></dd>
+<dt><span><code>char *desc</code></span></dt>
+<dd><p>A brief description of the filter.
+</p></dd>
+<dt><span><code>int (*filter)(const char *, char *, size_t)</code></span></dt>
+<dd><p>The filter function.
+</p></dd>
+</dl>
+
+<dl class="def">
+<dt id="index-gtf_005ffilter_005flookup"><span class="category">Function: </span><span><em>gtf_filter_t *</em> <strong>gtf_filter_lookup</strong> <em>(const&nbsp;char&nbsp;*<var>name</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005flookup' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>This is a lookup function for locating a specific filter. The function
+searches for the filter with the symbolic name <var>name</var>, and returns a
+pointer to the <i>gtf_filter_t</i> structure for that filter. If a filter
+with the given name is not found, the function returns <code>NULL</code>.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gtf_005ffilter_005faustro"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_austro</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005faustro' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005ffilter_005fb1ff"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_b1ff</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005fb1ff' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005ffilter_005fbrooklyn"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_brooklyn</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005fbrooklyn' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005ffilter_005fchef"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_chef</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005fchef' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005ffilter_005fcockney"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_cockney</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005fcockney' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005ffilter_005fdrawl"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_drawl</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005fdrawl' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005ffilter_005fdubya"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_dubya</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005fdubya' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005ffilter_005ffudd"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_fudd</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005ffudd' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005ffilter_005ffunetak"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_funetak</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005ffunetak' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005ffilter_005fjethro"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_jethro</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005fjethro' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005ffilter_005fjive"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_jive</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005fjive' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005ffilter_005fkraut"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_kraut</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005fkraut' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005ffilter_005fpansy"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_pansy</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005fpansy' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005ffilter_005fpirate"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_pirate</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005fpirate' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005ffilter_005fpostmodern"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_postmodern</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005fpostmodern' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005ffilter_005fredneck"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_redneck</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005fredneck' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005ffilter_005fvalspeak"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_valspeak</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005fvalspeak' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005ffilter_005fwarez"><span class="category">Function: </span><span><em>int</em> <strong>gtf_filter_warez</strong> <em>(const&nbsp;char&nbsp;*<var>input</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005ffilter_005fwarez' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>These functions invoke the corresponding filters on the input buffer
+<var>input</var>, which must be a NUL-terminated string. At most <var>bufsz</var>
+- 1 bytes of output are written to the buffer <var>buf</var>. The output is
+unconditionally NUL-terminated, but the text itself may be truncated if
+the buffer is too small to accommodate all of the output.
+</p>
+<p>The functions return 0 on success, or 1 if a buffer overflow occurred
+(signifying that the output was truncated).
+</p>
+<p>Note that lexical scanners generated by &lsquo;flex&rsquo; are not reentrant, so no
+assumptions should be made about the reentrancy of the above
+functions. When this library is used in a multithreaded environment,
+calls to these functions should be protected by mutex locks.
+</p>
+</dd></dl>
+
+<hr>
+</div>
+<div class="chapter" id="Writing-New-Filters">
+<div class="header">
+<p>
+Next: <a href="#Credits" accesskey="n" rel="next">Credits</a>, Previous: <a href="#The-Talkfilters-Library" accesskey="p" rel="prev">The Talkfilters Library</a>, Up: <a href="#Top" accesskey="u" rel="up">talkfilters</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Type-and-Function-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Writing-New-Filters-1"></span><h2 class="chapter">4 Writing New Filters</h2>
+
+<p>Writing new filters and adding them to the library is fairly
+straightforward, but certain conventions must be observed to ensure that
+the filters will work properly both as standalone programs and as
+library functions. The internal header file <samp>common.h</samp> declares
+some utility functions and macros that should be used to ensure proper
+behavior.
+</p>
+<dl class="def">
+<dt id="index-gtf_005fparse_005fargs"><span class="category">Macro: </span><span><strong>gtf_parse_args</strong> <em>()</em><a href='#index-gtf_005fparse_005fargs' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>A filter&rsquo;s <code>main()</code> function should make a call to this macro to
+process the command line arguments. Currently, only the standard
+&lsquo;<samp>--help</samp>&rsquo; and &lsquo;<samp>--version</samp>&rsquo; switches are recognized. A call to
+this macro should typically be the first statement in <code>main()</code>.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gtf_005frandom_005fseed"><span class="category">Macro: </span><span><strong>gtf_random_seed</strong> <em>()</em><a href='#index-gtf_005frandom_005fseed' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Filters which make calls to the <code>gtf_random()</code> macro (described
+below), should make a call to this macro (preferably in <code>main()</code>)
+to seed the random number generator. This macro seeds the random number
+sequence with a bitwise <small>OR</small> of the current system time and the
+<small>PID</small> of the calling process.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gtf_005frandom"><span class="category">Macro: </span><span><strong>gtf_random</strong> <em>(range)</em><a href='#index-gtf_005frandom' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>This macro returns a random integer in the range [0, <var>range</var>). 
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gtf_005fprintf"><span class="category">Macro: </span><span><strong>gtf_printf</strong> <em>(format, ...)</em><a href='#index-gtf_005fprintf' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005fputc"><span class="category">Macro: </span><span><strong>gtf_putc</strong> <em>(char)</em><a href='#index-gtf_005fputc' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gtf_005fputs"><span class="category">Macro: </span><span><strong>gtf_puts</strong> <em>(string)</em><a href='#index-gtf_005fputs' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Filters must be able to function both as standalone programs and as
+library functions, so the stdio library functions cannot be used to
+write output. Instead, these macros should be used in place of the stdio
+library functions <code>printf()</code>, <code>putchar()</code>, and <code>puts()</code>,
+respectively. When a filter is compiled to run as an executable, these
+macros simply evaluate to calls to the stdio functions they replace;
+when it is compiled into the library, they evaluate to calls to internal
+library functions which write to a data buffer.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gtf_005fputs_005fcase"><span class="category">Macro: </span><span><strong>gtf_puts_case</strong> <em>(string)</em><a href='#index-gtf_005fputs_005fcase' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>This macro is a specialized form of <code>gtf_puts()</code> which ensures that
+the case of the first character in <var>string</var> matches that of the
+first character in the currently matched token. For example, if
+<code>yytext</code> is &ldquo;Hello&rdquo;, calling <code>gtf_puts_case()</code> with either
+&ldquo;howdy&rdquo; or &ldquo;Howdy&rdquo; as an argument will write the string &ldquo;Howdy&rdquo;,
+whereas if <code>yytext</code> is &ldquo;hello&rdquo;, the string written will be
+&ldquo;howdy&rdquo;.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gtf_005funput_005flast"><span class="category">Macro: </span><span><strong>gtf_unput_last</strong> <em>()</em><a href='#index-gtf_005funput_005flast' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>This macro &ldquo;unputs&rdquo; the last character of the current token. In other
+words, the last character of <code>yytext</code> will be returned back to the
+input stream, so that it will be the next character read by the lexical
+scanner.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gtf_005fstrbuf_005finit"><span class="category">Function: </span><span><em>void</em> <strong>gtf_strbuf_init</strong> <em>(<span class="nolinebreak">gtf_databuf_t</span>&nbsp;*<var>sbuf</var><!-- /@w -->, char&nbsp;*<var>buf</var><!-- /@w -->, <span class="nolinebreak">size_t</span>&nbsp;<var>bufsz</var><!-- /@w -->)</em><a href='#index-gtf_005fstrbuf_005finit' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<span id="index-gtf_005fdatabuf_005ft"></span>
+<p>This function initializes the <i>gtf_databuf_t</i> structure at <var>sbuf</var>
+to point to the buffer <var>buf</var>, which is <var>bufsz</var> bytes in length;
+these values specify the buffer to which the <code>gtf_printf()</code>,
+<code>gtf_putc()</code>, <code>gtf_puts()</code>, and <code>gtf_puts_case()</code> macros
+will ultimately write their output when the filter is called through the
+library API. The <i>gtf_databuf_t</i> structure contains an integer field
+named <code>overflow</code> which will contain the value 1 after the call to
+<code>yylex()</code> if a buffer overflow occurred during filtering; otherwise
+it will contain the value 0.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gtf_005freset"><span class="category">Macro: </span><span><strong>gtf_reset</strong> <em>()</em><a href='#index-gtf_005freset' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>This macro should be called after the call to <code>yylex()</code> within the
+filter API function in order to reset the state of the lexical scanner
+in preparation for the next call.
+</p>
+</dd></dl>
+
+<p>The following example shows the C code that implements both the library
+interface and the <code>main()</code> function for the <code>chef</code> filter.
+</p>
+<br>
+
+<table class="cartouche" border="1"><tr><td>
+<div class="example">
+<pre class="example">#ifdef LIBRARY_MODE
+
+int gtf_filter_chef(const char *input, char *buf, size_t bufsz)
+{
+  gtf_databuf_t buffer;
+  YY_BUFFER_STATE _yybuf;
+
+  gtf_strbuf_init(&amp;buffer, buf, bufsz);
+  _yybuf = yy_scan_string(input);
+  yylex(&amp;buffer);
+  yy_delete_buffer(_yybuf);
+  gtf_reset();
+
+  return(buffer.overflow);
+}
+
+#else /* LIBRARY_MODE */
+
+int main(int argc, char **argv)
+{
+  gtf_parse_args();
+
+  yylex(NULL);
+
+  exit(EXIT_SUCCESS);
+}
+
+#endif /* LIBRARY_MODE */
+</pre></div>
+</td></tr></table>
+
+<p>Each filter lex file must have an introductory fragment similar to
+the following:
+</p>
+<br>
+
+<table class="cartouche" border="1"><tr><td>
+<div class="example">
+<pre class="example">%option prefix=&quot;chef_yy&quot;
+%option outfile=&quot;lex.yy.c&quot;
+%option noyywrap
+
+%{
+
+#include &quot;common.h&quot;
+
+#define YY_DECL int yylex(gtf_databuf_t *buf)
+
+%}
+</pre></div>
+</td></tr></table>
+
+<p>The <code>prefix</code> option specifies a prefix for the names of the
+functions generated for this filter; the function names for each filter
+must be unique so that multiple filters can coexist within the
+library.
+</p>
+<p>The <code>outfile</code> option reverses an undesirable side effect of the
+<code>prefix</code> option, which is to name the generated C source file based
+on the prefix; this breaks <code>ylwrap</code> (an Automake helper program),
+which expects the output file to be named <code>lex.yy.c</code>.
+</p>
+<p>The <code>noyywrap</code> option specifies that no <code>yywrap()</code> function is
+needed.
+</p>
+<p>The macro <code>YY_DECL</code> is defined to specify that the <code>yylex()</code>
+function takes a single argument, a pointer to the <i>gtf_databuf_t</i>
+structure described above. When <code>yylex()</code> is called from
+<code>main()</code>, no output buffer is needed since text is written to
+standard output, so in that case, it is called with a <code>NULL</code>
+pointer as the argument. This function can be declared to accept
+additional arguments, but the <var>buf</var> argument <i>must</i> be present.
+</p>
+<p>The file <samp>talkfilters.c</samp> contains a filter registry in the form of
+an array of structures. Entries should be added therein for new
+filters. Appropriate <code>extern</code> declarations of the API functions for
+new filters should also be added to <samp>talkfilters.h</samp>.
+</p>
+<hr>
+</div>
+<div class="chapter" id="Credits">
+<div class="header">
+<p>
+Next: <a href="#Software-License" accesskey="n" rel="next">Software License</a>, Previous: <a href="#Writing-New-Filters" accesskey="p" rel="prev">Writing New Filters</a>, Up: <a href="#Top" accesskey="u" rel="up">talkfilters</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Type-and-Function-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Credits-1"></span><h2 class="chapter">5 Credits</h2>
+
+<p>While all of these filters have been available in one form or another in
+the public domain for many years, the original authors of some of the
+filters are unknown. Reasonable attempts were made to find the authors
+and obtain written permission to repackage the filters as GNU software,
+but in some cases they could not be located.
+</p>
+<p>The following table lists the known authors and contributors.
+</p>
+<br>
+
+<table>
+<tr><td width="20%"><code>austro</code></td><td width="80%">Tom van Nes</td></tr>
+<tr><td width="20%"><code>b1ff</code></td><td width="80%">Matt Welsh, David Whitten</td></tr>
+<tr><td width="20%"><code>brooklyn</code></td><td width="80%">Daniel V Klein (<samp>nyc.l</samp>)</td></tr>
+<tr><td width="20%"><code>chef</code></td><td width="80%">John Hagerman</td></tr>
+<tr><td width="20%"><code>cockney</code></td><td width="80%">Stephen K Mulrine, Edward Betts (<samp>ken.l</samp>); <i>unknown</i> (<samp>cockney.l</samp>); extensive enhancements by Samuel Stoddard</td></tr>
+<tr><td width="20%"><code>drawl</code></td><td width="80%">Adam Hudd</td></tr>
+<tr><td width="20%"><code>dubya</code></td><td width="80%"><i>anonymous contribution</i></td></tr>
+<tr><td width="20%"><code>fudd</code></td><td width="80%"><i>unknown</i></td></tr>
+<tr><td width="20%"><code>funetak</code></td><td width="80%">Eclipse Enterprises</td></tr>
+<tr><td width="20%"><code>jethro</code></td><td width="80%">Duane Paulson</td></tr>
+<tr><td width="20%"><code>jive</code></td><td width="80%">Daniel V Klein, Clement Cole, with enhancements by Samuel Stoddard</td></tr>
+<tr><td width="20%"><code>kraut</code></td><td width="80%"><i>unknown</i></td></tr>
+<tr><td width="20%"><code>pansy</code></td><td width="80%"><i>unknown</i></td></tr>
+<tr><td width="20%"><code>pirate</code></td><td width="80%">Original Perl/PHP version by Dougal Campbell, with enhancements by Mark Lindner</td></tr>
+<tr><td width="20%"><code>postmodern</code></td><td width="80%"><i>unknown</i></td></tr>
+<tr><td width="20%"><code>redneck</code></td><td width="80%">Brand Hilton</td></tr>
+<tr><td width="20%"><code>valspeak</code></td><td width="80%"><i>unknown</i></td></tr>
+<tr><td width="20%"><code>warez</code></td><td width="80%">Ian Johnston, with enhancements by Mark Lindner</td></tr>
+<tr><td width="20%"><code>wrap</code></td><td width="80%">Mark Lindner</td></tr>
+</table>
+
+<br>
+
+<p>The filters were repackaged, integrated, optimized, and documented by
+Mark Lindner (<a href="mailto:markl@gnu.org">markl@gnu.org</a>).
+</p>
+<hr>
+</div>
+<div class="chapter" id="Software-License">
+<div class="header">
+<p>
+Next: <a href="#Type-and-Function-Index" accesskey="n" rel="next">Type and Function Index</a>, Previous: <a href="#Credits" accesskey="p" rel="prev">Credits</a>, Up: <a href="#Top" accesskey="u" rel="up">talkfilters</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Type-and-Function-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Software-License-1"></span><h2 class="chapter">6 Software License</h2>
+
+
+<div align="center">GNU GENERAL PUBLIC LICENSE
+</div><div align="center">Version 2, June 1991
+</div>
+
+<div class="display">
+<pre class="display">Copyright &copy; 1989, 1991 Free Software Foundation, Inc.
+59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+</pre></div>
+
+<br>
+<div align="center">Preamble
+</div><br>
+
+<p>The licenses for most software are designed to take away your
+freedom to share and change it.  By contrast, the GNU General Public
+License is intended to guarantee your freedom to share and change free
+software&mdash;to make sure the software is free for all its users.  This
+General Public License applies to most of the Free Software
+Foundation&rsquo;s software and to any other program whose authors commit to
+using it.  (Some other Free Software Foundation software is covered by
+the GNU Library General Public License instead.)  You can apply it to
+your programs, too.
+</p>
+<p>When we speak of free software, we are referring to freedom, not
+price.  Our General Public Licenses are designed to make sure that you
+have the freedom to distribute copies of free software (and charge for
+this service if you wish), that you receive source code or can get it
+if you want it, that you can change the software or use pieces of it
+in new free programs; and that you know you can do these things.
+</p>
+<p>To protect your rights, we need to make restrictions that forbid
+anyone to deny you these rights or to ask you to surrender the rights.
+These restrictions translate to certain responsibilities for you if you
+distribute copies of the software, or if you modify it.
+</p>
+<p>For example, if you distribute copies of such a program, whether
+gratis or for a fee, you must give the recipients all the rights that
+you have.  You must make sure that they, too, receive or can get the
+source code.  And you must show them these terms so they know their
+rights.
+</p>
+<p>We protect your rights with two steps: (1) copyright the software, and
+(2) offer you this license which gives you legal permission to copy,
+distribute and/or modify the software.
+</p>
+<p>Also, for each author&rsquo;s protection and ours, we want to make certain
+that everyone understands that there is no warranty for this free
+software.  If the software is modified by someone else and passed on, we
+want its recipients to know that what they have is not the original, so
+that any problems introduced by others will not reflect on the original
+authors&rsquo; reputations.
+</p>
+<p>Finally, any free program is threatened constantly by software
+patents.  We wish to avoid the danger that redistributors of a free
+program will individually obtain patent licenses, in effect making the
+program proprietary.  To prevent this, we have made it clear that any
+patent must be licensed for everyone&rsquo;s free use or not licensed at all.
+</p>
+<p>The precise terms and conditions for copying, distribution and
+modification follow.
+</p><div align="center">GNU GENERAL PUBLIC LICENSE
+</div><div align="center">TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+</div>
+<br>
+<ol start="0">
+<li> This License applies to any program or other work which contains
+a notice placed by the copyright holder saying it may be distributed
+under the terms of this General Public License.  The &ldquo;Program&rdquo;, below,
+refers to any such program or work, and a &ldquo;work based on the Program&rdquo;
+means either the Program or any derivative work under copyright law:
+that is to say, a work containing the Program or a portion of it,
+either verbatim or with modifications and/or translated into another
+language.  (Hereinafter, translation is included without limitation in
+the term &ldquo;modification&rdquo;.)  Each licensee is addressed as &ldquo;you&rdquo;.
+
+<p>Activities other than copying, distribution and modification are not
+covered by this License; they are outside its scope.  The act of
+running the Program is not restricted, and the output from the Program
+is covered only if its contents constitute a work based on the
+Program (independent of having been made by running the Program).
+Whether that is true depends on what the Program does.
+</p>
+</li><li> You may copy and distribute verbatim copies of the Program&rsquo;s
+source code as you receive it, in any medium, provided that you
+conspicuously and appropriately publish on each copy an appropriate
+copyright notice and disclaimer of warranty; keep intact all the
+notices that refer to this License and to the absence of any warranty;
+and give any other recipients of the Program a copy of this License
+along with the Program.
+
+<p>You may charge a fee for the physical act of transferring a copy, and
+you may at your option offer warranty protection in exchange for a fee.
+</p>
+</li><li> You may modify your copy or copies of the Program or any portion
+of it, thus forming a work based on the Program, and copy and
+distribute such modifications or work under the terms of Section 1
+above, provided that you also meet all of these conditions:
+
+<ol type="a" start="1">
+<li> You must cause the modified files to carry prominent notices
+stating that you changed the files and the date of any change.
+
+</li><li> You must cause any work that you distribute or publish, that in
+whole or in part contains or is derived from the Program or any
+part thereof, to be licensed as a whole at no charge to all third
+parties under the terms of this License.
+
+</li><li> If the modified program normally reads commands interactively
+when run, you must cause it, when started running for such
+interactive use in the most ordinary way, to print or display an
+announcement including an appropriate copyright notice and a
+notice that there is no warranty (or else, saying that you provide
+a warranty) and that users may redistribute the program under
+these conditions, and telling the user how to view a copy of this
+License.  (Exception: if the Program itself is interactive but
+does not normally print such an announcement, your work based on
+the Program is not required to print an announcement.)
+</li></ol>
+
+<p>These requirements apply to the modified work as a whole.  If
+identifiable sections of that work are not derived from the Program,
+and can be reasonably considered independent and separate works in
+themselves, then this License, and its terms, do not apply to those
+sections when you distribute them as separate works.  But when you
+distribute the same sections as part of a whole which is a work based
+on the Program, the distribution of the whole must be on the terms of
+this License, whose permissions for other licensees extend to the
+entire whole, and thus to each and every part regardless of who wrote it.
+</p>
+<p>Thus, it is not the intent of this section to claim rights or contest
+your rights to work written entirely by you; rather, the intent is to
+exercise the right to control the distribution of derivative or
+collective works based on the Program.
+</p>
+<p>In addition, mere aggregation of another work not based on the Program
+with the Program (or with a work based on the Program) on a volume of
+a storage or distribution medium does not bring the other work under
+the scope of this License.
+</p>
+</li><li> You may copy and distribute the Program (or a work based on it,
+under Section 2) in object code or executable form under the terms of
+Sections 1 and 2 above provided that you also do one of the following:
+
+<ol type="a" start="1">
+<li> Accompany it with the complete corresponding machine-readable
+source code, which must be distributed under the terms of Sections
+1 and 2 above on a medium customarily used for software interchange; or,
+
+</li><li> Accompany it with a written offer, valid for at least three
+years, to give any third party, for a charge no more than your
+cost of physically performing source distribution, a complete
+machine-readable copy of the corresponding source code, to be
+distributed under the terms of Sections 1 and 2 above on a medium
+customarily used for software interchange; or,
+
+</li><li> Accompany it with the information you received as to the offer
+to distribute corresponding source code.  (This alternative is
+allowed only for noncommercial distribution and only if you
+received the program in object code or executable form with such
+an offer, in accord with Subsection b above.)
+</li></ol>
+
+<p>The source code for a work means the preferred form of the work for
+making modifications to it.  For an executable work, complete source
+code means all the source code for all modules it contains, plus any
+associated interface definition files, plus the scripts used to
+control compilation and installation of the executable.  However, as a
+special exception, the source code distributed need not include
+anything that is normally distributed (in either source or binary
+form) with the major components (compiler, kernel, and so on) of the
+operating system on which the executable runs, unless that component
+itself accompanies the executable.
+</p>
+<p>If distribution of executable or object code is made by offering
+access to copy from a designated place, then offering equivalent
+access to copy the source code from the same place counts as
+distribution of the source code, even though third parties are not
+compelled to copy the source along with the object code.
+</p>
+</li><li> You may not copy, modify, sublicense, or distribute the Program
+except as expressly provided under this License.  Any attempt
+otherwise to copy, modify, sublicense or distribute the Program is
+void, and will automatically terminate your rights under this License.
+However, parties who have received copies, or rights, from you under
+this License will not have their licenses terminated so long as such
+parties remain in full compliance.
+
+</li><li> You are not required to accept this License, since you have not
+signed it.  However, nothing else grants you permission to modify or
+distribute the Program or its derivative works.  These actions are
+prohibited by law if you do not accept this License.  Therefore, by
+modifying or distributing the Program (or any work based on the
+Program), you indicate your acceptance of this License to do so, and
+all its terms and conditions for copying, distributing or modifying
+the Program or works based on it.
+
+</li><li> Each time you redistribute the Program (or any work based on the
+Program), the recipient automatically receives a license from the
+original licensor to copy, distribute or modify the Program subject to
+these terms and conditions.  You may not impose any further
+restrictions on the recipients&rsquo; exercise of the rights granted herein.
+You are not responsible for enforcing compliance by third parties to
+this License.
+
+</li><li> If, as a consequence of a court judgment or allegation of patent
+infringement or for any other reason (not limited to patent issues),
+conditions are imposed on you (whether by court order, agreement or
+otherwise) that contradict the conditions of this License, they do not
+excuse you from the conditions of this License.  If you cannot
+distribute so as to satisfy simultaneously your obligations under this
+License and any other pertinent obligations, then as a consequence you
+may not distribute the Program at all.  For example, if a patent
+license would not permit royalty-free redistribution of the Program by
+all those who receive copies directly or indirectly through you, then
+the only way you could satisfy both it and this License would be to
+refrain entirely from distribution of the Program.
+
+<p>If any portion of this section is held invalid or unenforceable under
+any particular circumstance, the balance of the section is intended to
+apply and the section as a whole is intended to apply in other
+circumstances.
+</p>
+<p>It is not the purpose of this section to induce you to infringe any
+patents or other property right claims or to contest validity of any
+such claims; this section has the sole purpose of protecting the
+integrity of the free software distribution system, which is
+implemented by public license practices.  Many people have made
+generous contributions to the wide range of software distributed
+through that system in reliance on consistent application of that
+system; it is up to the author/donor to decide if he or she is willing
+to distribute software through any other system and a licensee cannot
+impose that choice.
+</p>
+<p>This section is intended to make thoroughly clear what is believed to
+be a consequence of the rest of this License.
+</p>
+</li><li> If the distribution and/or use of the Program is restricted in
+certain countries either by patents or by copyrighted interfaces, the
+original copyright holder who places the Program under this License
+may add an explicit geographical distribution limitation excluding
+those countries, so that distribution is permitted only in or among
+countries not thus excluded.  In such case, this License incorporates
+the limitation as if written in the body of this License.
+
+</li><li> The Free Software Foundation may publish revised and/or new versions
+of the General Public License from time to time.  Such new versions will
+be similar in spirit to the present version, but may differ in detail to
+address new problems or concerns.
+
+<p>Each version is given a distinguishing version number.  If the Program
+specifies a version number of this License which applies to it and &ldquo;any
+later version&rdquo;, you have the option of following the terms and conditions
+either of that version or of any later version published by the Free
+Software Foundation.  If the Program does not specify a version number of
+this License, you may choose any version ever published by the Free Software
+Foundation.
+</p>
+</li><li> If you wish to incorporate parts of the Program into other free
+programs whose distribution conditions are different, write to the author
+to ask for permission.  For software which is copyrighted by the Free
+Software Foundation, write to the Free Software Foundation; we sometimes
+make exceptions for this.  Our decision will be guided by the two goals
+of preserving the free status of all derivatives of our free software and
+of promoting the sharing and reuse of software generally.
+
+<br>
+<div align="center">NO WARRANTY
+</div><br>
+
+</li><li> BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
+FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHEN
+OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
+PROVIDE THE PROGRAM &ldquo;AS IS&rdquo; WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED
+OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS
+TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.  SHOULD THE
+PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING,
+REPAIR OR CORRECTION.
+
+</li><li> IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
+REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES,
+INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING
+OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED
+TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY
+YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER
+PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGES.
+</li></ol>
+
+<br>
+<div align="center">END OF TERMS AND CONDITIONS
+</div>
+<ul class="section-toc">
+<li><a href="#Appendix_003a-How-to-Apply-These-Terms-to-Your-New-Programs" accesskey="1">Appendix: How to Apply These Terms to Your New Programs</a></li>
+</ul>
+<div class="unnumberedsec" id="Appendix_003a-How-to-Apply-These-Terms-to-Your-New-Programs">
+<h3 class="unnumberedsec">Appendix: How to Apply These Terms to Your New Programs</h3>
+
+<p>If you develop a new program, and you want it to be of the greatest
+possible use to the public, the best way to achieve this is to make it
+free software which everyone can redistribute and change under these terms.
+</p>
+<p>To do so, attach the following notices to the program.  It is safest
+to attach them to the start of each source file to most effectively
+convey the exclusion of warranty; and each file should have at least
+the &ldquo;copyright&rdquo; line and a pointer to where the full notice is found.
+</p>
+<div class="example">
+<pre class="example"><var>one line to give the program's name and a brief idea of what it does.</var>
+Copyright (C) <var>yyyy</var>  <var>name of author</var>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+02111-1307, USA.
+</pre></div>
+
+<p>Also add information on how to contact you by electronic and paper mail.
+</p>
+<p>If the program is interactive, make it output a short notice like this
+when it starts in an interactive mode:
+</p>
+<div class="example">
+<pre class="example">Gnomovision version 69, Copyright (C) 19<var>yy</var> <var>name of author</var>
+Gnomovision comes with ABSOLUTELY NO WARRANTY; for details type
+`show w'. This is free software, and you are welcome to redistribute
+it under certain conditions; type `show c' for details.
+
+The hypothetical commands &lsquo;<samp>show w</samp>&rsquo; and &lsquo;<samp>show c</samp>&rsquo; should show
+the appropriate parts of the General Public License.  Of course, the
+commands you use may be called something other than &lsquo;<samp>show w</samp>&rsquo; and
+&lsquo;<samp>show c</samp>&rsquo;; they could even be mouse-clicks or menu items---whatever
+suits your program.
+
+You should also get your employer (if you work as a programmer) or your
+school, if any, to sign a ``copyright disclaimer'' for the program, if
+necessary.  Here is a sample; alter the names:
+
+</pre><div class="example">
+<pre class="example">Yoyodyne, Inc., hereby disclaims all copyright interest in the
+program `Gnomovision' (which makes passes at compilers) written
+by James Hacker.
+
+<var>signature of Ty Coon</var>, 1 April 1989
+Ty Coon, President of Vice
+</pre></div>
+<pre class="example">
+
+This General Public License does not permit incorporating your program
+into proprietary programs.  If your program is a subroutine library, you
+may consider it more useful to permit linking proprietary applications
+with the library.  If this is what you want to do, use the GNU Library
+General Public License instead of this License.
+</pre></div>
+
+<hr>
+</div>
+</div>
+<div class="unnumbered" id="Type-and-Function-Index">
+<div class="header">
+<p>
+Previous: <a href="#Software-License" accesskey="p" rel="prev">Software License</a>, Up: <a href="#Top" accesskey="u" rel="up">talkfilters</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Type-and-Function-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Type-and-Function-Index-1"></span><h2 class="unnumbered">Type and Function Index</h2>
+
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Type-and-Function-Index_tp_letter-G"><b>G</b></a>
+ &nbsp; 
+</td></tr></table>
+<table class="index-tp" border="0">
+<tr><td></td><th align="left">Index Entry</th><td>&nbsp;</td><th align="left"> Section</th></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Type-and-Function-Index_tp_letter-G">G</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005fdatabuf_005ft"><code>gtf_databuf_t</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Writing-New-Filters">Writing New Filters</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005ft"><code>gtf_filter_t</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+</table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Type-and-Function-Index_tp_letter-G"><b>G</b></a>
+ &nbsp; 
+</td></tr></table>
+
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Type-and-Function-Index_fn_letter-G"><b>G</b></a>
+ &nbsp; 
+</td></tr></table>
+<table class="index-fn" border="0">
+<tr><td></td><th align="left">Index Entry</th><td>&nbsp;</td><th align="left"> Section</th></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Type-and-Function-Index_fn_letter-G">G</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005faustro"><code>gtf_filter_austro</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005fb1ff"><code>gtf_filter_b1ff</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005fbrooklyn"><code>gtf_filter_brooklyn</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005fchef"><code>gtf_filter_chef</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005fcockney"><code>gtf_filter_cockney</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005fcount"><code>gtf_filter_count</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005fdrawl"><code>gtf_filter_drawl</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005fdubya"><code>gtf_filter_dubya</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005ffudd"><code>gtf_filter_fudd</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005ffunetak"><code>gtf_filter_funetak</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005fjethro"><code>gtf_filter_jethro</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005fjive"><code>gtf_filter_jive</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005fkraut"><code>gtf_filter_kraut</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005flist"><code>gtf_filter_list</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005flookup"><code>gtf_filter_lookup</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005fpansy"><code>gtf_filter_pansy</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005fpirate"><code>gtf_filter_pirate</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005fpostmodern"><code>gtf_filter_postmodern</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005fredneck"><code>gtf_filter_redneck</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005fvalspeak"><code>gtf_filter_valspeak</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005ffilter_005fwarez"><code>gtf_filter_warez</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-Talkfilters-Library">The Talkfilters Library</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005fparse_005fargs"><code>gtf_parse_args</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Writing-New-Filters">Writing New Filters</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005fprintf"><code>gtf_printf</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Writing-New-Filters">Writing New Filters</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005fputc"><code>gtf_putc</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Writing-New-Filters">Writing New Filters</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005fputs"><code>gtf_puts</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Writing-New-Filters">Writing New Filters</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005fputs_005fcase"><code>gtf_puts_case</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Writing-New-Filters">Writing New Filters</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005frandom"><code>gtf_random</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Writing-New-Filters">Writing New Filters</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005frandom_005fseed"><code>gtf_random_seed</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Writing-New-Filters">Writing New Filters</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005freset"><code>gtf_reset</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Writing-New-Filters">Writing New Filters</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005fstrbuf_005finit"><code>gtf_strbuf_init</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Writing-New-Filters">Writing New Filters</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-gtf_005funput_005flast"><code>gtf_unput_last</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Writing-New-Filters">Writing New Filters</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+</table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Type-and-Function-Index_fn_letter-G"><b>G</b></a>
+ &nbsp; 
+</td></tr></table>
+
+
+</div>
+</div>
+
+
+
+</body>
+</html>

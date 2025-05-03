@@ -207,7 +207,7 @@ on some test input:
 #include <talkfilters.h>
 
 int main(void)
-  @{
+@{
   int ct, i;
   const gtf_filter_t *filters, *fp;
   const char *inbuf = "This is a test.";
@@ -217,14 +217,14 @@ int main(void)
   printf("There are %d filters available.\n", ct);
   filters = gtf_filter_list();
   for(i = 0, fp = filters; i < ct; i++, fp++)
-    @{
+  @{
     printf("filter #%d: %s - %s\n", i + 1, fp->name, fp->desc);
     fp->filter(inbuf, outbuf, sizeof(outbuf));
     puts(outbuf);
-    @}
+  @}
   
   exit(0);
-  @}
+@}
 @end example
 @end cartouche
 
@@ -391,7 +391,7 @@ interface and the @code{main()} function for the @code{chef} filter.
 #ifdef LIBRARY_MODE
 
 int gtf_filter_chef(const char *input, char *buf, size_t bufsz)
-  @{
+@{
   gtf_databuf_t buffer;
   YY_BUFFER_STATE _yybuf;
 
@@ -402,18 +402,18 @@ int gtf_filter_chef(const char *input, char *buf, size_t bufsz)
   gtf_reset();
 
   return(buffer.overflow);
-  @}
+@}
 
 #else /* LIBRARY_MODE */
 
 int main(int argc, char **argv)
-  @{
+@{
   gtf_parse_args();
 
   yylex(NULL);
 
   exit(EXIT_SUCCESS);
-  @}
+@}
 
 #endif /* LIBRARY_MODE */
 @end example
